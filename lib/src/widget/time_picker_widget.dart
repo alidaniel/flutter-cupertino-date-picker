@@ -190,7 +190,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
 
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
-    List<Widget> pickers = List<Widget>();
+    List<Widget> pickers = [];
     List<String> formatArr =
         DateTimeFormatter.splitDateFormat(widget.dateFormat);
     formatArr.forEach((format) {
@@ -285,6 +285,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
 
   /// change the selection of minute picker
   void _changeMinuteSelection(int index) {
+    // ignore: todo
     // TODO: this looks like it would break date ranges but not taking into account _minuteRange.first
     int value = index * _minuteDivider;
     if (_currMinute != value) {

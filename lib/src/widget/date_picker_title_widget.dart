@@ -34,12 +34,14 @@ class DatePickerTitleWidget extends StatelessWidget {
         children: <Widget>[
           Container(
             height: pickerTheme.titleHeight,
+            // ignore: deprecated_member_use
             child: FlatButton(
                 child: _renderCancelWidget(context),
                 onPressed: () => this.onCancel()),
           ),
           Container(
             height: pickerTheme.titleHeight,
+            // ignore: deprecated_member_use
             child: FlatButton(
                 child: _renderConfirmWidget(context),
                 onPressed: () => this.onConfirm()),

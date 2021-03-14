@@ -82,7 +82,7 @@ class DatePicker {
         onCancel: onCancel,
         onChange: onChange,
         onConfirm: onConfirm,
-        theme: Theme.of(context, shadowThemeOnly: true),
+        theme: Theme.of(context),
         barrierLabel:
             MaterialLocalizations.of(context).modalBarrierDismissLabel,
         minuteDivider: minuteDivider,
@@ -168,7 +168,7 @@ class _DatePickerComponent extends StatelessWidget {
   final _DatePickerRoute route;
   final double _pickerHeight;
 
-  _DatePickerComponent({Key key, @required this.route, @required pickerHeight})
+  _DatePickerComponent({@required this.route, @required pickerHeight})
       : this._pickerHeight = pickerHeight;
 
   @override

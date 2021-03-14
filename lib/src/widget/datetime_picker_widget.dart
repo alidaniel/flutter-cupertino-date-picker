@@ -43,7 +43,10 @@ class DateTimePickerWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _DateTimePickerWidgetState(
-      this.minDateTime, this.maxDateTime, this.initDateTime, this.minuteDivider);
+      this.minDateTime,
+      this.maxDateTime,
+      this.initDateTime,
+      this.minuteDivider);
 }
 
 class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
@@ -63,8 +66,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
   final DateTime _baselineDate = DateTime(1900, 1, 1);
 
-  _DateTimePickerWidgetState(
-      DateTime minTime, DateTime maxTime, DateTime initTime, int minuteDivider) {
+  _DateTimePickerWidgetState(DateTime minTime, DateTime maxTime,
+      DateTime initTime, int minuteDivider) {
     // check minTime value
     if (minTime == null) {
       minTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);
@@ -208,7 +211,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
-    List<Widget> pickers = List<Widget>();
+    List<Widget> pickers = [];
     List<String> formatArr = DateTimeFormatter.splitDateFormat(
         widget.dateFormat,
         mode: DateTimePickerMode.datetime);
@@ -276,8 +279,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
         itemExtent: widget.pickerTheme.itemHeight,
         onSelectedItemChanged: valueChanged,
         childCount: format.contains('m')
-          ? _calculateMinuteChildCount(valueRange, minuteDivider)
-          : valueRange.last - valueRange.first + 1,
+            ? _calculateMinuteChildCount(valueRange, minuteDivider)
+            : valueRange.last - valueRange.first + 1,
         itemBuilder: (context, index) {
           int value = valueRange.first + index;
 
@@ -353,6 +356,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
   /// change the selection of minute picker
   void _changeMinuteSelection(int index) {
+    // ignore: todo
     // TODO: copied from time_picker_widget - this looks like it would break date ranges but not taking into account _minuteRange.first
     int value = index * _minuteDivider;
 //    int value = _minuteRange.first + index;
@@ -425,7 +429,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     if (minuteRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
       int currMinute = _currMinute;
-      _minuteScrollCtrl.jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
+      _minuteScrollCtrl
+          .jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
       if (currMinute < minuteRange.last) {
         _minuteScrollCtrl.jumpToItem(currMinute - minuteRange.first);
       }
